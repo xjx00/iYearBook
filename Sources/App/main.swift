@@ -1,12 +1,12 @@
 import Vapor
-
+import HTTP
 let drop = Droplet()
 
 drop.get("/") { req in
     return "Hello, yearbook. ver 2.1"
 }
 
-drop.get("/set") { request in
+drop.post("/set") { request in
     let name = request.data["name"]?.string
     let age = request.data["age"]?.string
     let phone = request.data["phone"]?.string
