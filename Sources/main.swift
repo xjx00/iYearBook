@@ -8,7 +8,7 @@ drop.get("/hello") { _ in
 
 drop.get("/version") { request in
     return try JSON(node: [
-        "version": "2.1"
+        "version": "2.2"
     ])
 }
 drop.run()
