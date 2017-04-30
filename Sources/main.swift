@@ -2,7 +2,7 @@ import Vapor
 
 let drop = Droplet()
 
-drop.get("/hello") { _ in
+drop.get("/") { _ in
   return "Hello Xjx00"
 }
 
