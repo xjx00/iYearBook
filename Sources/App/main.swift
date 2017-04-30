@@ -3,7 +3,7 @@ import Vapor
 let drop = Droplet()
 
 drop.get("/") { req in
-    return "Hello, world."
+    return "Hello, yearbook. ver 2.1"
 }
 
 drop.get("/set") { request in
