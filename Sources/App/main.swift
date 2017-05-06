@@ -12,7 +12,7 @@ let address = "universe"
 //end for debug
 
 drop.get("/") { req in
-    return "Hello, yearbook. ver 2.1"
+    return "Hello, yearbook. ver 2.2"
 }
 
 drop.post("/set") { request in
@@ -23,4 +23,22 @@ drop.post("/set") { request in
     let address = request.data["address"]?.string
     return "\(name)\(age)\(phone)\(qq)\(address)"
                  }
+
+drop.get("/version") { request in
+     return try JSON(node: [
+        "version": "2.2"
+    ])
+}
+
+drop.get("/admin") { request in
+     if(debug) {
+     return try JSON(node: [
+        "name": "\(name)"
+    ])
+     }
+      else {
+          return "no debug"
+     }
+}
+
 drop.run()
