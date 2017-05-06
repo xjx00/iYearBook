@@ -34,7 +34,10 @@ drop.get("/admin") { request in
      if(debug) {
      return try JSON(node: [
         "name": "\(name)",
-        "age": "\(age)"
+        "age": "\(age)",
+        "phone": "\(phone)",
+        "qq": "\(qq)",
+        "address": "\(address)"
     ])
      }
       else {
