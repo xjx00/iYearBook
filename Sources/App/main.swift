@@ -33,7 +33,8 @@ drop.get("/version") { request in
 drop.get("/admin") { request in
      if(debug) {
      return try JSON(node: [
-        "name": "\(name)"
+        "name": "\(name)",
+        "age": "\(age)"
     ])
      }
       else {
