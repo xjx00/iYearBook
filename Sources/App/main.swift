@@ -2,6 +2,7 @@ import Vapor
 //import HTTP
 let drop = Droplet()
 
+ler version = 2.3
 //start for debug
 let debug = true
 let name = "test"
@@ -12,7 +13,7 @@ let address = "universe"
 //end for debug
 
 drop.get("/") { req in
-    return "Hello, yearbook. ver 2.2"
+    return "Hello, yearbook. ver \(version)"
 }
 
 drop.post("/set") { request in
@@ -21,12 +22,25 @@ drop.post("/set") { request in
     let phone = request.data["phone"]?.string
     let qq = request.data["qq"]?.string
     let address = request.data["address"]?.string
-    return "\(name)\(age)\(phone)\(qq)\(address)"
+    //return "\(name)\(age)\(phone)\(qq)\(address)"
+    if(debug) {
+     return try JSON(node: [
+        "name": "\(name)",
+        "age": "\(age)",
+        "phone": "\(phone)",
+        "qq": "\(qq)",
+        "address": "\(address)"
+    ])
+     }
+      else {
+          return "no debug"
+     }
+
                  }
 
 drop.get("/version") { request in
      return try JSON(node: [
-        "version": "2.2"
+        "version": "\(version)"
     ])
 }
 
