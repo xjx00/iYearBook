@@ -2,7 +2,7 @@ import Vapor
 //import HTTP
 let drop = Droplet()
 
-ler version = 2.3
+ler version = "2.3"
 //start for debug
 let debug = true
 let name = "test"
