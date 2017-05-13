@@ -1,4 +1,7 @@
 import Vapor
+import Auth
+import Fluent
+import VaporMemory
 //import HTTP
 let drop = Droplet()
 
@@ -11,6 +14,12 @@ let phone = "18612345678"
 let qq = "1504635269"
 let address = "universe"
 //end for debug
+
+try drop.addProvider(VaporMemory.Provider.self) // in memory "database"
+let auth = AuthMiddleware(user: User.self)
+drop.middleware.append(auth)
+drop.preparations = [User.self]
+
 
 drop.get("/") { req in
     return "Hello, yearbook. ver \(crversion)"
@@ -58,5 +67,17 @@ drop.get("/admin") { request in
           return "no debug"
      }
 }
+
+drop.group("users") { users in
+    users.post { req in
+        guard let name = req.data["name"]?.string else {
+            throw Abort.badRequest
+        }
+
+        var user = User(name: name)
+        try user.save()
+        return user
+    }
+                    }
 
 drop.run()
