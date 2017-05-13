@@ -5,7 +5,7 @@ import VaporMemory
 //import HTTP
 let drop = Droplet()
 
-let crversion = "2.3"
+let crversion = "2.4"
 //start for debug
 let debug = true
 let name = "test"
