@@ -5,7 +5,7 @@ import VaporMemory
 //import HTTP
 let drop = Droplet()
 
-let crversion = "2.6"
+let crversion = "2.8"
 //start for debug
 let debug = true
 let name = "test"
@@ -72,19 +72,12 @@ drop.get("/weixin") { req in
 //get info
      let signature = req.data["signature"]?.string
      let timestamp = req.data["timestamp"]?.string
-	 let nonce = req.data["nonce"]?.string
-	 let echostr = req.data["echostr"]?.string
-			
-	 let token = "xjx115478" //token
-			
-	 let matches = true
-		if matches {
-			return echostr!
-		}else{
-			return ""
-			 }
-                    }
+     let nonce = req.data["nonce"]?.string
+     let echostr = req.data["echostr"]?.string
+     let token = "xjx115478" //token
 
+     return echostr!
+		    }
 drop.group("users") { users in
     users.post { req in
         guard let name = req.data["name"]?.string else {
