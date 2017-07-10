@@ -3,9 +3,10 @@ import Auth
 import Fluent
 import VaporMemory
 //import HTTP
+import BML
 let drop = Droplet()
 
-let crversion = "2.8"
+let crversion = "2.9"
 //start for debug
 let debug = true
 let name = "test"
@@ -76,8 +77,23 @@ drop.get("/weixin") { req in
      let echostr = req.data["echostr"]?.string
      let token = "xjx115478" //token
 
-     return echostr!
+     if(echostr != nil){
+        return echostr!
+	 }else{
+	     return "no echostr"
+	 }
 		    }
+
+drop.post("/weixin") { req in
+     if let contentType = req.headers["Content-Type"], contentType.contains("application/xml"), let bytes = req.body.bytes {
+     let node = try XMLParser.parse(bytes)
+	 let msg = node["xml","Content"]?.text
+     print("Got msg: \(msg)")
+    }
+	 
+     return "success"
+}
+
 drop.group("users") { users in
     users.post { req in
         guard let name = req.data["name"]?.string else {
