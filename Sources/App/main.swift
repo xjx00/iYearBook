@@ -85,11 +85,11 @@ drop.get("/weixin") { req in
 		    }
 
 drop.post("/weixin") { req in
-     if let contentType = req.headers["Content-Type"], contentType.contains("application/xml"), let bytes = req.body.bytes {
-     let node = try XMLParser.parse(bytes)
-	 let msg = node["xml","Content"]?.text
-     print("Got msg: \(msg)")
-   }
+    // if let contentType = req.headers["Content-Type"], contentType.contains("application/xml"), let bytes = req.body.bytes {
+    // let node = try XMLParser.parse(bytes)
+	// let msg = node["xml","Content"]?.text
+     //print("Got msg: \(msg)")
+   //}
 	 
      return "success"
 }
