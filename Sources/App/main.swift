@@ -3,10 +3,10 @@ import Auth
 import Fluent
 import VaporMemory
 //import HTTP
-//import BML
+import BML
 let drop = Droplet()
 
-let crversion = "2.9"
+let crversion = "3.0"
 //start for debug
 let debug = true
 let name = "test"
@@ -32,19 +32,19 @@ drop.post("/set") { request in
     let phone = request.data["phone"]?.string
     let qq = request.data["qq"]?.string
     let address = request.data["address"]?.string
-    //return "\(name)\(age)\(phone)\(qq)\(address)"
-    if(debug) {
-     return try JSON(node: [
-        "name": "\(name)",
-        "age": "\(age)",
-        "phone": "\(phone)",
-        "qq": "\(qq)",
-        "address": "\(address)"
-    ])
-     }
-      else {
-          return "no debug"
-     }
+    return "\(name)\(age)\(phone)\(qq)\(address)"
+    //if(debug) {
+    // return try JSON(node: [
+     //   "name": "\(name)",
+     //   "age": "\(age)",
+      //  "phone": "\(phone)",
+      //  "qq": "\(qq)",
+      //  "address": "\(address)"
+    //])
+    // }
+    //  else {
+     //     return "no debug"
+    // }
 
                  }
 
@@ -54,20 +54,20 @@ drop.get("/version") { request in
     ])
 }
 
-drop.get("/admin") { request in
-     if(debug) {
-     return try JSON(node: [
-        "name": "\(name)",
-        "age": "\(age)",
-        "phone": "\(phone)",
-        "qq": "\(qq)",
-        "address": "\(address)"
-    ])
-     }
-      else {
-          return "no debug"
-     }
-}
+//drop.get("/admin") { request in
+     //if(debug) {
+     //return try JSON(node: [
+     //   "name": "\(name)",
+     //   "age": "\(age)",
+     //   "phone": "\(phone)",
+     //   "qq": "\(qq)",
+     //   "address": "\(address)"
+    //])
+    /// }
+     // else {
+     //     return "no debug"
+     //}
+//}
 
 drop.get("/weixin") { req in
 //get info
@@ -84,15 +84,15 @@ drop.get("/weixin") { req in
 	 }
 		    }
 
-//drop.post("/weixin") { req in
-  //   if let contentType = req.headers["Content-Type"], contentType.contains("application/xml"), let bytes = req.body.bytes {
-   //  let node = try XMLParser.parse(bytes)
-//	 let msg = node["xml","Content"]?.text
-   //  print("Got msg: \(msg)")
-  //  }
+drop.post("/weixin") { req in
+     if let contentType = req.headers["Content-Type"], contentType.contains("application/xml"), let bytes = req.body.bytes {
+     let node = try XMLParser.parse(bytes)
+	 let msg = node["xml","Content"]?.text
+     print("Got msg: \(msg)")
+   }
 	 
-    // return "success"
-//}
+     return "success"
+}
 
 drop.group("users") { users in
     users.post { req in
