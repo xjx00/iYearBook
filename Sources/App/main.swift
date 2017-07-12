@@ -3,7 +3,7 @@ import Auth
 import Fluent
 import VaporMemory
 //import HTTP
-import BML
+//import BML
 let drop = Droplet()
 
 let crversion = "2.9"
@@ -84,15 +84,15 @@ drop.get("/weixin") { req in
 	 }
 		    }
 
-drop.post("/weixin") { req in
-     if let contentType = req.headers["Content-Type"], contentType.contains("application/xml"), let bytes = req.body.bytes {
-     let node = try XMLParser.parse(bytes)
-	 let msg = node["xml","Content"]?.text
-     print("Got msg: \(msg)")
-    }
+//drop.post("/weixin") { req in
+  //   if let contentType = req.headers["Content-Type"], contentType.contains("application/xml"), let bytes = req.body.bytes {
+   //  let node = try XMLParser.parse(bytes)
+//	 let msg = node["xml","Content"]?.text
+   //  print("Got msg: \(msg)")
+  //  }
 	 
-     return "success"
-}
+    // return "success"
+//}
 
 drop.group("users") { users in
     users.post { req in
