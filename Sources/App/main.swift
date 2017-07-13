@@ -86,10 +86,10 @@ drop.get("/weixin") { req in
 
 drop.post("/weixin") { req in
     if let contentType = req.headers["Content-Type"], contentType.contains("application/xml"), let bytes = req.body.bytes {
-       let xml = XML(data: bytes)
-       let msg = xml["Content"][0].string // let msg = node["xml","Content"]?.text
+       //let xml = XML(data: bytes)
+       //let msg = xml["Content"][0].string // let msg = node["xml","Content"]?.text
        
-     print("Got msg: \(msg)")
+     print("Got msg: \(bytes)")
    }
 	 
      return "success"
