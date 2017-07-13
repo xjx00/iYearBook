@@ -3,7 +3,7 @@ import Auth
 import Fluent
 import VaporMemory
 //import HTTP
-import SwiftyXML
+//import SwiftyXML
 let drop = Droplet()
 
 let crversion = "3.1"
