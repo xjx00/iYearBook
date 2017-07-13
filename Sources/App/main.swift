@@ -3,9 +3,10 @@ import Auth
 import Fluent
 import VaporMemory
 //import HTTP
+import SwiftyXML
 let drop = Droplet()
 
-let crversion = "3.0"
+let crversion = "3.1"
 //start for debug
 let debug = true
 let name = "test"
@@ -84,11 +85,12 @@ drop.get("/weixin") { req in
 		    }
 
 drop.post("/weixin") { req in
-    // if let contentType = req.headers["Content-Type"], contentType.contains("application/xml"), let bytes = req.body.bytes {
-    // let node = try XMLParser.parse(bytes)
-	// let msg = node["xml","Content"]?.text
-     //print("Got msg: \(msg)")
-   //}
+    if let contentType = req.headers["Content-Type"], contentType.contains("application/xml"), let bytes = req.body.bytes {
+       let xml = XML(data: bytes)
+       let msg = xml["Content"][0].string // let msg = node["xml","Content"]?.text
+       
+     print("Got msg: \(msg)")
+   }
 	 
      return "success"
 }
