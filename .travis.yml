@@ -1,13 +1,12 @@
 os:
   - linux
+  - osx
 language: generic
 sudo: required
 dist: trusty
+osx_image: xcode8
 install:
-  - sudo apt-get install clang libicu-dev
-  - wget https://swift.org/builds/swift-3.1.1-release/ubuntu1610/swift-3.1.1-RELEASE/swift-3.1.1-RELEASE-ubuntu16.10.tar.gz
-  - tar xzf swift-3.1.1-RELEASE-ubuntu16.10.tar.gz
-  - export PATH=./swift-3.1.1-RELEASE-ubuntu16.10/usr/bin:"${PATH}"
+  - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/02090c7ede5a637b76e6df1710e83cd0bbe7dcdf/swiftenv-install.sh)"
 script:
   - swift build
   - swift build -c release
